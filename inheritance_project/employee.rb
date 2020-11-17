@@ -8,13 +8,10 @@ class Employee
     end
 
     def boss=(boss) 
-        return boss if boss == nil
+        return nil if boss == nil
 
-        self.boss = boss 
-
-        if self.boss
-            self.boss._children.delete(self)
-          end
+        self.boss = boss
+        boss.employees << self
     end
 
     def bonus(multiplier)
