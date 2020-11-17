@@ -43,7 +43,7 @@ class Board
             @board[end_pos] = @board[start_pos]
             @board[start_pos] = Piece.new("_")
         end
-
+        p @board
     end
 
     def valid_pos?(pos)
