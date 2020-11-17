@@ -2,25 +2,27 @@ require_relative "./employee.rb"
 class Manager < Employee
     # include Employee
     attr_reader :employees
-    def initialize(name, title, salary, boss = nil, employees)
+    def initialize(name, title, salary, boss = nil, employees) #refactor similar to poly parent/child relationship
         super(name, title, salary, boss)
         @employees = employees
     end
 
-    def bonus(multipiler)
+    def bonus(multipiler) 
         sum = 0
         employees.each do |emp|
-            sum += emp.salary
+            if emp.employee == nil
+                return sum + salary
+            else
+                return sum + bonus(multiplier)
         end
-        sum * multipiler
     end
 
 end
 
-Shawna = Employee.new("Shawna", "TA", 12000, "Darren")
-David = Employee.new("David", "TA", 10000, "Darren")
-Darren = Manager.new("Darren", "TA_Manager", 78000, "Ned",[Shawna, David])
-Ned = Manager.new("Ned", "Founder", 1000000,[Darren, Shawna, David])
+Shawna = Employee.new("Shawna", "TA", 12000, Darren)
+David = Employee.new("David", "TA", 10000, Darren)
+Darren = Manager.new("Darren", "TA_Manager", 78000, Ned,[Shawna, David])#only include boss array of single boss
+Ned = Manager.new("Ned", "Founder", 1000000,[Darren]) 
 
 p Ned.bonus(5) # => 500_000
 p Darren.bonus(4) # => 88_000

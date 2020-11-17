@@ -7,6 +7,16 @@ class Employee
         @boss = boss
     end
 
+    def boss=(boss) 
+        return boss if boss == nil
+
+        self.boss = boss 
+
+        if self.boss
+            self.boss._children.delete(self)
+          end
+    end
+
     def bonus(multiplier)
        (salary) * multiplier 
     end
