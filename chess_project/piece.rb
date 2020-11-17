@@ -1,16 +1,22 @@
 require_relative "board.rb"
 class Piece
     
-    def initialize(color, board, pos)
-        
+    def initialize(color=nil, board=nil, pos=nil)
+        @color = color
+        @board = board
+        @pos = pos
+    end
+
+    def inspect
+        self.to_s
     end
 
     def to_s
-
+        @color.to_s
     end
 
     def empty?
-
+        @board[pos] == nil
     end
 
     def valid_moves
