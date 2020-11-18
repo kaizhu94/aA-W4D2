@@ -31,6 +31,11 @@ module Stepable
 
 
     def moves
+      array = move_diffs
+      final_moves = []
+      array.each do |direction|
+        final_moves << grow_unblocked_moves_in_dir(direction[0], direction[1])
+      end
       # create array to collect moves
   
       # iterate through each of the piece's possible move_diffs
@@ -40,11 +45,41 @@ module Stepable
           # OR on the board and contains a piece of the opposite color
   
       # return the final array of moves
+      final_moves
     end
   
     private
+
+    def grow_unblocked_moves_in_dir(dx, dy) 
+      # create an array to collect moves
+      all_moves = []
+      # get the piece's current row and current column
+      current_pos = self.pos
+      # in a loop:
+        # continually increment the piece's current row and current column to generate a new position
+        # stop looping if the new position is invalid (not on the board); the piece can't move in this direction
+        # if the new position is empty, the piece can move here, so add the new position to the moves array
+        # if the new position is occupied with a piece of the opposite color, the piece can move here (to capture the opposing piece), so add the new position to the moves array
+          # but, the piece cannot continue to move past this piece, so stop looping
+        # if the new position is occupied with a piece of the same color, stop looping
+      while current_pos[0] >=0 && current_pos[0] <8 && current_pos[1] >=0 && current_pos[1] <8
+        current_pos = [current_pos[0] + dx, current_pos[1] + dy]
+        if self.board[current_pos] == null
+          all_moves << current_pos
+        elsif self.board[current_pos].color != self.color
+          all_moves << current_pos
+          break
+        elsif self.board[current_pos].color == self.color
+          break
+        end
+      end
+      # return the final moves array
+      all_moves
+    end
   
     def move_diffs
+
+    
       # subclass implements this
       raise NotImplementedError
     end
