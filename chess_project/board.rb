@@ -11,21 +11,21 @@ class Board
         end
         # p @board
 
-        # rook = Piece.new("♖")
-        # knight = Piece.new("♘")
-        # bishop = Piece.new("♗")
-        # king =  Piece.new("♔")
-        # queen = Piece.new('♛')
-        # pawn = Piece.new("♙")
-        # null = Piece.new("_")
+        rook = Piece.new("♖")
+        knight = Piece.new("♘")
+        bishop = Piece.new("♗")
+        king =  Piece.new("♔")
+        queen = Piece.new('♛')
+        pawn = Piece.new("♙")
+        null = Piece.new("_")
          
-        # @board[0] = [rook, knight, bishop, king, queen, bishop, knight, rook]
-        # @board[7] = [rook, knight, bishop, king, queen, bishop, knight, rook]
-        # @board[1] = [pawn] * 8
-        # @board[6] = [pawn] * 8
-        # (2..5).each do |row|
-        #     @board[row] = [null] * 8
-        # end
+        @board[0] = [rook, knight, bishop, king, queen, bishop, knight, rook]
+        @board[7] = [rook, knight, bishop, king, queen, bishop, knight, rook]
+        @board[1] = [pawn] * 8
+        @board[6] = [pawn] * 8
+        (2..5).each do |row|
+            @board[row] = [null] * 8
+        end
         render
     end
 

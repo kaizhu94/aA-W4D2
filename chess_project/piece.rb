@@ -7,6 +7,8 @@ class Piece
         @pos = pos
     end
 
+    
+
     def inspect
         self.to_s
     end
@@ -30,7 +32,7 @@ class Piece
     private
 
     def move_into_check?(end_pos)
-
+        
     end
 
 end
